@@ -47,18 +47,21 @@ public class Tawar extends Roti {
         
         // Switch Case untuk menghitung total bahan berdasarkan pilihan Varian
         switch (this.nomorVarian){
-            case 1 -> {
+            case 1:
+            {
                 this.filling.put("Coklat", 80 * this.jumPesanan);
                 break;
                 
             }
                 
-            case 2 -> {
+            case 2:
+            {
                 this.filling.put("Keju", 80 * this.jumPesanan);
                 break;
             }
             
-            default -> {
+            default:
+            {
                 System.out.println("Varian Tidak Valid");
                 System.exit(0);
             }

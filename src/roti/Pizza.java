@@ -47,7 +47,8 @@ public class Pizza extends Roti{
         
         // Switch Case untuk menghitung total bahan berdasarkan pilihan Varian
         switch (this.nomorVarian){
-            case 1 -> {                
+            case 1:
+            {                
                 this.topping.put("Keju", 30 * this.jumPesanan);
                 this.topping.put("Sosis", 50 * this.jumPesanan);
                 this.topping.put("Smoked Beef", 50 * this.jumPesanan);
@@ -56,7 +57,8 @@ public class Pizza extends Roti{
 
             }
             
-            default -> {
+            default:
+            {
                 System.out.println("Varian Tidak Valid");
                 System.exit(0);
             }
