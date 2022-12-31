@@ -75,7 +75,23 @@ public abstract class Roti {
         System.out.println("=============================================================================");
         System.out.println("=============================================================================");
         System.out.println("Total bahan yang diperlukan untuk membuat " + this.jumPesanan + " pcs " + this.jenisRoti);
-        System.out.println("Varian : " + this.nomorVarian);
+        System.out.println("\nVarian : " + this.nomorVarian);
+        
+        // Menampilkan Bahan Filling dan Topping
+        System.out.print("Filling = ");
+        for (String k : this.filling.keySet()){
+            System.out.print(k + "; ");
+        }
+        
+        System.out.println("");
+        
+        System.out.print("Topping = ");
+        for (String k : this.topping.keySet()){
+            System.out.print(k + "; ");
+        }
+        
+        System.out.println("");
+        
         System.out.println("============================================================================");
         System.out.printf("Tepung Terigu = %.2f gr \n", this.tepungTerigu);
         System.out.printf("Gula Pasir    = %.2f gr \n", this.gulaPasir);
