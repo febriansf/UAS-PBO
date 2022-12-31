@@ -14,21 +14,21 @@ public class Tawar extends Roti {
     // Komposisi roti manis
     private final int[] komposisi = {
         1000, //0.Tepung Terigu
-        150,  //1.Gula Pasir
-        150,  //2.Butter
+        125,  //1.Gula Pasir
+        100,  //2.Butter
         20,   //3.Ragi
-        300,  //4.Susu Bubuk
-        250,  //5.Susu Cair
-        80,   //6.Telur
-        400   //7.Es Batu
+        250,  //4.Susu Bubuk
+        200,  //5.Susu Cair
+        70,   //6.Telur
+        300   //7.Es Batu
     };
     
     // Berat dough per pcs
-    private final int beratPerPcs = 50;    
+    private final int beratPerPcs = 400;    
 
     // Constructor
     public Tawar() {
-        this.jenisRoti = "Roti Manis";
+        this.jenisRoti = "Roti Tawar";
     }
 
     // Method untuk melakukan validasi input nomor Varian
