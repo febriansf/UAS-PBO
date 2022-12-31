@@ -103,7 +103,7 @@ public abstract class Roti {
         System.out.printf("Es Batu       = %.2f gr \n", this.esBatu);
         System.out.println("============================================================================");
         
-        System.out.println("Isian :\n");
+        System.out.println("Total Bahan Untuk Isian :\n");
         
         for (String k : this.varian.keySet()){
             System.out.println( k + " = " + this.varian.get(k) + " gr");
