@@ -34,7 +34,7 @@ public class Tawar extends Roti {
     // Method untuk melakukan validasi input nomor Varian
     @Override
     public void pilihVarian(int nomorVarian) {
-        if (nomorVarian < 0 || nomorVarian > 3){
+        if (nomorVarian < 0 || nomorVarian > 2){
             System.out.println("Varian Tidak Valid!");
             System.exit(0);
         }
@@ -48,25 +48,17 @@ public class Tawar extends Roti {
         // Switch Case untuk menghitung total bahan berdasarkan pilihan Varian
         switch (this.nomorVarian){
             case 1 -> {
-                this.filling.put("Keju", 5 * this.jumPesanan);
-                this.filling.put("Coklat", 5 * this.jumPesanan);
+                this.filling.put("Coklat", 80 * this.jumPesanan);
                 
-                this.topping.put("Coklat", 5 * this.jumPesanan);
             }
                 
             case 2 -> {
-                this.filling.put("Selai Red Bean", 10 * this.jumPesanan);
+                this.filling.put("Keju", 80 * this.jumPesanan);
                 
-                this.topping.put("Krim Vanilla", 5 * this.jumPesanan);
-            }
-            
-            case 3 -> {
-                this.filling.put("Keju", 10 * this.jumPesanan);
-                this.filling.put("Sosis", 10 * this.jumPesanan);
             }
             
             default -> {
-                System.out.println("Varian Tidak Ada");
+                System.out.println("Varian Tidak Valid");
                 System.exit(0);
             }
         }
@@ -74,16 +66,6 @@ public class Tawar extends Roti {
         // Menambahkan bahan filling ke objek varian untuk perhitungan total bahan
         for (String k : this.filling.keySet()){
             this.varian.put(k, this.filling.get(k));
-        }
-        
-        // Menambahkan bahan topping ke objek varian untuk perhitungan total bahan
-        for (String k : this.topping.keySet()){
-            if (this.varian.containsKey(k)){
-                Integer sum = this.varian.get(k) + this.topping.get(k);
-                this.varian.put(k, sum);
-                continue;
-            }
-            this.varian.put(k, this.topping.get(k));
         }
     }
 
