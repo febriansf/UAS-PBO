@@ -72,6 +72,7 @@ public abstract class Roti {
     public void tampilTotalBahan(){
         hitungVarian();
         hitungTotalBahan();
+        System.out.println("");
         System.out.println("=============================================================================");
         System.out.println("=============================================================================");
         System.out.println("Total bahan yang diperlukan untuk membuat " + this.jumPesanan + " pcs " + this.jenisRoti);
