@@ -49,12 +49,13 @@ public class Tawar extends Roti {
         switch (this.nomorVarian){
             case 1 -> {
                 this.filling.put("Coklat", 80 * this.jumPesanan);
+                break;
                 
             }
                 
             case 2 -> {
                 this.filling.put("Keju", 80 * this.jumPesanan);
-                
+                break;
             }
             
             default -> {

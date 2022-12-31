@@ -53,17 +53,20 @@ public class Manis extends Roti {
                 this.filling.put("Coklat", 5 * this.jumPesanan);
                 
                 this.topping.put("Coklat", 5 * this.jumPesanan);
+                break;
             }
                 
             case 2 -> {
                 this.filling.put("Selai Red Bean", 10 * this.jumPesanan);
                 
                 this.topping.put("Krim Vanilla", 5 * this.jumPesanan);
+                break;
             }
             
             case 3 -> {
                 this.filling.put("Keju", 10 * this.jumPesanan);
                 this.filling.put("Sosis", 10 * this.jumPesanan);
+                break;
             }
             
             default -> {

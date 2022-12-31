@@ -52,6 +52,7 @@ public class Pizza extends Roti{
                 this.topping.put("Sosis", 50 * this.jumPesanan);
                 this.topping.put("Smoked Beef", 50 * this.jumPesanan);
                 this.topping.put("Bawang Bombay", 30 * this.jumPesanan);
+                break;
 
             }
             
