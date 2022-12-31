@@ -163,5 +163,19 @@ public abstract class Roti {
         System.out.println("Total Modal Semua Bahan = Rp." + this.totalModal);
         System.out.println("=======================================================");
     }
+    
+    // Method untuk Menampilkan harga Jual per Pcs apabila ingin Profit 50% dari total modal
+    public void tampilHargaJual(){
+        // Menghitung profit sebesar 50% dari total Modal
+        double profit = (this.totalModal * 50 / 100);
+        
+        System.out.println("Profit yang diharapkan = Rp." + profit);
+        System.out.println("Rekomendasi Harga Jual " + this.jumPesanan + " pcs " + this.jenisRoti);
+        System.out.print("Dengan Margin Profit 50% dari total modal adalah : ");
+        System.out.printf("Rp.%.0f per pcs \n", ((this.totalModal + profit) / this.jumPesanan));
+        System.out.println("============================================================================");
+        System.out.println("============================================================================");
+
+    };
 
 }
