@@ -14,21 +14,21 @@ public class Pizza extends Roti{
     // Komposisi roti manis
     private final int[] komposisi = {
         1000, //0.Tepung Terigu
-        150,  //1.Gula Pasir
-        150,  //2.Butter
+        100,  //1.Gula Pasir
+        100,  //2.Butter
         20,   //3.Ragi
-        300,  //4.Susu Bubuk
-        250,  //5.Susu Cair
-        80,   //6.Telur
-        400   //7.Es Batu
+        200,  //4.Susu Bubuk
+        180,  //5.Susu Cair
+        50,   //6.Telur
+        300   //7.Es Batu
     };
     
     // Berat dough per pcs
-    private final int beratPerPcs = 50;    
+    private final int beratPerPcs = 190;    
 
     // Constructor
     public Pizza() {
-        this.jenisRoti = "Roti Manis";
+        this.jenisRoti = "Pizza";
     }
 
     // Method untuk melakukan validasi input nomor Varian
