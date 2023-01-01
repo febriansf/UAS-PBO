@@ -7,6 +7,7 @@ package roti;
 import bahan.Bahan;
 import java.util.HashMap;
 import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
 import varian.BahanVarian;
 
 /**
@@ -33,7 +34,7 @@ public abstract class Roti {
     protected int jumPesanan;
     
     // Banyaknya Beli Kemasan per Bahan
-    protected double modalBahan[] = new double[8];
+    protected int modalBahan[] = new int[8];
     
     // Harga Beli Total Kemasan per Bahan
     protected double modalHarga[] = new double[8];
@@ -43,6 +44,10 @@ public abstract class Roti {
     
     // Attribute untuk menyimpan pilihan varian
     protected int nomorVarian;
+    
+    protected int beratPerPcs;
+    
+    protected int[] komposisi;
     
     // Attribute untuk menyimpan Filling, Topping, Varian
     protected HashMap<String, Integer> filling = new HashMap<String, Integer>();
@@ -66,7 +71,21 @@ public abstract class Roti {
     protected abstract void hitungVarian();
     
     // Entahlah tapi ini abstract method untuk menghitung total BERAT bahan yang diperlukan sesuai komposisi dan jumlah pesanan
-    protected abstract void hitungTotalBahan();
+    protected void hitungTotalBahan(){
+        double beratDough = IntStream.of(this.komposisi).sum();
+        
+        double beratTotal = this.beratPerPcs * this.jumPesanan;
+        
+        this.totalDough = beratTotal;
+        this.tepungTerigu = beratTotal / beratDough * this.komposisi[0];
+        this.gulaPasir = beratTotal / beratDough * this.komposisi[1];
+        this.butter = beratTotal / beratDough * this.komposisi[2];
+        this.ragi = beratTotal / beratDough * this.komposisi[3];
+        this.susuBubuk = beratTotal / beratDough * this.komposisi[4];
+        this.susuCair = beratTotal / beratDough * this.komposisi[5];
+        this.telur = beratTotal / beratDough * this.komposisi[6];
+        this.esBatu = beratTotal / beratDough * this.komposisi[7];
+    };
     
     // Method untuk menampilkan BERAT bahan yang diperlukan berdasarkan banyaknya pesanan dan komposisi
     public void tampilTotalBahan(){
@@ -119,14 +138,14 @@ public abstract class Roti {
     // Method untuk menghitung banyaknya bahan yang perlu di beli serta total harga per bahan
     protected void hitungModal() {
         Bahan bahan = new Bahan();
-        modalBahan[0] = Math.ceil(this.tepungTerigu / bahan.getBerat("tepungTerigu"));
-        modalBahan[1] = Math.ceil(this.gulaPasir / bahan.getBerat("gulaPasir"));
-        modalBahan[2] = Math.ceil(this.butter / bahan.getBerat("butter"));
-        modalBahan[3] = Math.ceil(this.ragi / bahan.getBerat("ragi"));
-        modalBahan[4] = Math.ceil(this.susuBubuk / bahan.getBerat("susuBubuk"));
-        modalBahan[5] = Math.ceil(this.susuCair / bahan.getBerat("susuCair"));
-        modalBahan[6] = Math.ceil(this.telur / bahan.getBerat("telur"));
-        modalBahan[7] = Math.ceil(this.esBatu / bahan.getBerat("esBatu"));
+        modalBahan[0] = (int)Math.ceil(this.tepungTerigu / bahan.getBerat("tepungTerigu"));
+        modalBahan[1] = (int)Math.ceil(this.gulaPasir / bahan.getBerat("gulaPasir"));
+        modalBahan[2] = (int)Math.ceil(this.butter / bahan.getBerat("butter"));
+        modalBahan[3] = (int)Math.ceil(this.ragi / bahan.getBerat("ragi"));
+        modalBahan[4] = (int)Math.ceil(this.susuBubuk / bahan.getBerat("susuBubuk"));
+        modalBahan[5] = (int)Math.ceil(this.susuCair / bahan.getBerat("susuCair"));
+        modalBahan[6] = (int)Math.ceil(this.telur / bahan.getBerat("telur"));
+        modalBahan[7] = (int)Math.ceil(this.esBatu / bahan.getBerat("esBatu"));
         
         // Looping untuk menghitung total harga bahan yang perlu dibeli.
         for (int i = 0; i < modalBahan.length; i++){
@@ -141,34 +160,39 @@ public abstract class Roti {
     // Method untuk menampilkan banyaknya bahan yang perlu dibeli , total harga per bahan, dan total modal.
     public void tampilModal() {
         hitungModal();
+        Bahan bahan = new Bahan();
         //System.out.println("=======================================================");
         //System.out.println("=======================================================");
         System.out.println("Bahan yang perlu dibeli untuk Roti: ");
-        System.out.println("");
-        System.out.printf("Tepung terigu %.0f kemasan dengan total harga Rp.%.0f \n", this.modalBahan[0], this.modalHarga[0]);
-        System.out.printf("Gula Pasir    %.0f kemasan dengan total harga Rp.%.0f \n", this.modalBahan[1], this.modalHarga[1]);
-        System.out.printf("Butter        %.0f kemasan dengan total harga Rp.%.0f \n", this.modalBahan[2], this.modalHarga[2]);
-        System.out.printf("Ragi          %.0f kemasan dengan total harga Rp.%.0f \n", this.modalBahan[3], this.modalHarga[3]);
-        System.out.printf("Susu Bubuk    %.0f kemasan dengan total harga Rp.%.0f \n", this.modalBahan[4], this.modalHarga[4]);
-        System.out.printf("Susu Cair     %.0f kemasan dengan total harga Rp.%.0f \n", this.modalBahan[5], this.modalHarga[5]);
-        System.out.printf("Telur         %.0f kemasan dengan total harga Rp.%.0f \n", this.modalBahan[6], this.modalHarga[6]);
-        System.out.printf("Es Batu       %.0f kemasan dengan total harga Rp.%.0f \n", this.modalBahan[7], this.modalHarga[7]);
-        System.out.println("=======================================================");
+        System.out.printf("----------------------------------------------------------------------------%n");
+        System.out.printf("| %13s | %6s | %13s | %-17s | %-11s |%n", "Nama Bahan", "Jumlah", "Berat Kemasan", "Harga Per Kemasan", "Total Harga");
+        System.out.printf("----------------------------------------------------------------------------%n");
+        System.out.printf("| %13s | %6s | %10s gr | Rp.%-14s | Rp.%-8s |%n", "Tepung Terigu",  this.modalBahan[0], bahan.getBerat("tepungTerigu"), bahan.getHarga(0), this.modalHarga[0]);
+        System.out.printf("| %13s | %6s | %10s gr | Rp.%-14s | Rp.%-8s |%n", "Gula Pasir", this.modalBahan[1], bahan.getBerat("gulaPasir"), bahan.getHarga(1), this.modalHarga[1]);
+        System.out.printf("| %13s | %6s | %10s gr | Rp.%-14s | Rp.%-8s |%n", "Butter", this.modalBahan[2], bahan.getBerat("butter"), bahan.getHarga(2), this.modalHarga[2]);
+        System.out.printf("| %13s | %6s | %10s gr | Rp.%-14s | Rp.%-8s |%n", "Ragi",  this.modalBahan[3], bahan.getBerat("ragi"), bahan.getHarga(3), this.modalHarga[3]);
+        System.out.printf("| %13s | %6s | %10s gr | Rp.%-14s | Rp.%-8s |%n", "Susu Bubuk", this.modalBahan[4], bahan.getBerat("susuBubuk"), bahan.getHarga(4), this.modalHarga[4]);
+        System.out.printf("| %13s | %6s | %10s gr | Rp.%-14s | Rp.%-8s |%n", "Susu Cair", this.modalBahan[5], bahan.getBerat("susuCair"), bahan.getHarga(5), this.modalHarga[5]);
+        System.out.printf("| %13s | %6s | %10s gr | Rp.%-14s | Rp.%-8s |%n", "Telur", this.modalBahan[6], bahan.getBerat("telur"), bahan.getHarga(6), this.modalHarga[6]);
+        System.out.printf("| %13s | %6s | %10s gr | Rp.%-14s | Rp.%-8s |%n", "Es Batu", this.modalBahan[7], bahan.getBerat("esBatu"), bahan.getHarga(7), this.modalHarga[7]);
+        System.out.printf("----------------------------------------------------------------------------%n");
         System.out.println("Bahan yang perlu dibeli untuk Isian: ");
-        System.out.println("");
-        
+        System.out.printf("--------------------------------------------------------%n");
+        System.out.printf("| %13s | %6s | %13s | %-11s |%n", "Nama Bahan", "Jumlah", "Berat Kemasan", "Total Harga");
+        System.out.printf("--------------------------------------------------------%n");
         double totalHargaIsian = 0;
         // Looping untuk menampilkan Varian
         for (String k : this.varian.keySet()){
-            BahanVarian bahan = new BahanVarian();
-            double jumKemasan = Math.ceil(Double.valueOf(this.varian.get(k)) / Double.valueOf(bahan.getBeratKemasan(k)));
-            double hargaBahan = jumKemasan * bahan.getHargaKemasan(k);
+            BahanVarian bahanVarian = new BahanVarian();
+            int jumKemasan = (int)Math.ceil(Double.valueOf(this.varian.get(k)) / Double.valueOf(bahanVarian.getBeratKemasan(k)));
+            double hargaBahan = jumKemasan * bahanVarian.getHargaKemasan(k);
             
             // Menghitung total harga bahan isian.
             totalHargaIsian += hargaBahan;
 
-            System.out.printf(k + " %.0f kemasan dengan total harga Rp.%.0f \n", jumKemasan, hargaBahan);
+            System.out.printf("| %13s | %6s | %10s gr | Rp.%-8s |%n", k,  jumKemasan, bahanVarian.getBeratKemasan(k), hargaBahan);
         }
+        System.out.printf("--------------------------------------------------------%n");
         
         // Menambahkan Total Modal dengan Total Harga Isian
         this.totalModal += totalHargaIsian;
