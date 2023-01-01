@@ -4,35 +4,33 @@
  */
 package roti;
 
-import java.util.stream.IntStream;
 
 /**
  *
  * @author BrxxN
  */
-public class Manis extends Roti {
+public class Manis extends Roti {  
     
-    // Komposisi roti manis
-    private final int[] komposisi = {
-        1000, //0.Tepung Terigu
-        150,  //1.Gula Pasir
-        150,  //2.Butter
-        20,   //3.Ragi
-        300,  //4.Susu Bubuk
-        250,  //5.Susu Cair
-        80,   //6.Telur
-        400   //7.Es Batu
-    };
-    
-    // Berat dough per pcs
-    private final int beratPerPcs = 50;    
-
     // Constructor
     public Manis() {
+        this.komposisi = new int[]{
+            1000, //0.Tepung Terigu
+            150, //1.Gula Pasir
+            150, //2.Butter
+            20, //3.Ragi
+            300, //4.Susu Bubuk
+            250, //5.Susu Cair
+            80, //6.Telur
+            400   //7.Es Batu
+};
         this.jenisRoti = "Roti Manis";
-    }
+        
+        // Berat dough per pcs
+        this.beratPerPcs = 50;  
+    };
 
-    // Method untuk melakukan validasi input nomor Varian
+// Komposisi roti manis
+        // Method untuk melakukan validasi input nomor Varian
     @Override
     public void pilihVarian(int nomorVarian) {
         if (nomorVarian < 0 || nomorVarian > 3){
@@ -92,20 +90,20 @@ public class Manis extends Roti {
     }
 
     // Method untuk menghitung BERAT per bahan yang diperlukan berdasarkan banyaknya pesanan dan komposisi
-    @Override
-    protected void hitungTotalBahan() {
-        double beratDough = IntStream.of(this.komposisi).sum();
-        
-        double beratTotal = this.beratPerPcs * this.jumPesanan;
-        
-        this.totalDough = beratTotal;
-        this.tepungTerigu = beratTotal / beratDough * this.komposisi[0];
-        this.gulaPasir = beratTotal / beratDough * this.komposisi[1];
-        this.butter = beratTotal / beratDough * this.komposisi[2];
-        this.ragi = beratTotal / beratDough * this.komposisi[3];
-        this.susuBubuk = beratTotal / beratDough * this.komposisi[4];
-        this.susuCair = beratTotal / beratDough * this.komposisi[5];
-        this.telur = beratTotal / beratDough * this.komposisi[6];
-        this.esBatu = beratTotal / beratDough * this.komposisi[7];
-    }
+//    @Override
+//    protected void hitungTotalBahan() {
+//        double beratDough = IntStream.of(this.komposisi).sum();
+//        
+//        double beratTotal = this.beratPerPcs * this.jumPesanan;
+//        
+//        this.totalDough = beratTotal;
+//        this.tepungTerigu = beratTotal / beratDough * this.komposisi[0];
+//        this.gulaPasir = beratTotal / beratDough * this.komposisi[1];
+//        this.butter = beratTotal / beratDough * this.komposisi[2];
+//        this.ragi = beratTotal / beratDough * this.komposisi[3];
+//        this.susuBubuk = beratTotal / beratDough * this.komposisi[4];
+//        this.susuCair = beratTotal / beratDough * this.komposisi[5];
+//        this.telur = beratTotal / beratDough * this.komposisi[6];
+//        this.esBatu = beratTotal / beratDough * this.komposisi[7];
+//    }
 }
