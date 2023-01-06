@@ -34,7 +34,7 @@ public abstract class Roti {
     protected int jumPesanan;
     
     // Banyaknya Beli Kemasan per Bahan
-    protected double modalBahan[] = new double[8];
+    protected int modalBahan[] = new int[8];
     
     // Harga Beli Total Kemasan per Bahan
     protected double modalHarga[] = new double[8];
