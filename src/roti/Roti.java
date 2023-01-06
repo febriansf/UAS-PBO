@@ -50,9 +50,9 @@ public abstract class Roti {
     protected int[] komposisi;
     
     // Attribute untuk menyimpan Filling, Topping, Varian
-    protected HashMap<String, Integer> filling = new HashMap<String, Integer>();
-    protected HashMap<String, Integer> topping = new HashMap<String, Integer>();
-    protected HashMap<String, Integer> varian = new HashMap<String, Integer>();
+    protected HashMap<String, Integer> filling = new HashMap<>();
+    protected HashMap<String, Integer> topping = new HashMap<>();
+    protected HashMap<String, Integer> varian = new HashMap<>();
     
     // Validasi Jumlah Pesanan supaya tidak minus
     public void inputPesanan(int jum){
